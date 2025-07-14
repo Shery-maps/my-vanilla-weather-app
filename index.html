@@ -16,15 +16,15 @@
   <body>
     <div class="weather-app">
       <header>
-        <form id="search-form">
+        <form class="search-form" id="search-form">
           <input
             type="search"
             placeholder="Enter a city..."
             required
-            class="search-input"
-            id="search-input"
+            class="search-form-input"
+            id="search-form-input"
           />
-          <input type="submit" value="Search" class="search-button" />
+          <input type="submit" value="Search" class="search-form-button" />
         </form>
       </header>
       <main>
@@ -39,10 +39,10 @@
               <strong id="wind-speed"></strong>
             </p>
           </div>
-          <div class="weather-app-icon" id="emoji"></div>
-          <div class="current-weather-temperature">
-            <div class="weather-temperature" id="temperature"></div>
-            <div class="weather-celsius">°C</div>
+          <div class="weather-app-icon">
+            <div id="emoji"></div>
+            <div class="current-weather-temperature" id="temperature"></div>
+            <div class="weather-app-unit">°C</div>
           </div>
         </div>
       </main>
@@ -65,6 +65,6 @@
         </p>
       </footer>
     </div>
+    <script src="src/index.js"></script>
   </body>
-  <script src="src/index.js"></script>
 </html>

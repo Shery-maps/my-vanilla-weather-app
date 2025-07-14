@@ -1,33 +1,7 @@
-function formatDate(date) {
-  let minutes = date.getMinutes();
-  let hours = date.getHours();
-  let day = date.getDay();
-
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  let formattedDay = days[day];
-  return `${formattedDay} ${hours}:${minutes}`;
-}
-
 function updateWeather(response) {
   let cityElement = document.querySelector("#city");
   let temperatureElement = document.querySelector("#temperature");
+  let temperature = response.data.temperature.current;
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind-speed");
@@ -45,25 +19,42 @@ function updateWeather(response) {
 
   emojiElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
 }
+function formatDate(date) {
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
 
-function search(event) {
-  event.preventDefault();
-  let searchInputElement = document.querySelector("#search-input");
-  let city = searchInputElement.value;
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay];
 
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${day} ${hours}:${minutes}`;
+}
+
+function searchCity(city) {
   let apiKey = "4300a976o5b9aabeb554726cfa24edtc";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(updateWeather);
 }
 
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
+function handleSearchSubmit(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-form-input");
 
-function loadDefaultCity() {
-  let apiKey = "4300a976o5b9aabeb554726cfa24edtc";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=Harare&key=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(updateWeather);
+  searchCity(searchInput.value);
 }
+let searchFormElement = document.querySelector("#search-form");
+searchFormElement.addEventListener("submit", search);
 
-loadDefaultCity();
+searchCity("Harare");
