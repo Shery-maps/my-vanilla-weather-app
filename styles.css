@@ -53,6 +53,7 @@ main {
 .current-weather {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .current-weather-city {
@@ -82,14 +83,21 @@ main {
 }
 
 .current-weather-temperature {
-  font-size: 88px;
-  line-height: 88px;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.weather-temperature {
+  font-size: 80px;
   font-weight: bold;
+  line-height: 1;
 }
 
 .weather-celsius {
   font-size: 28px;
-  margin-top: 6px;
+  position: relative;
+  top: 10px;
 }
 
 footer {
@@ -97,5 +105,4 @@ footer {
   text-align: center;
   padding-top: 15px;
   color: rgba(39, 33, 66, 0.4);
-  font-size: 14px;
 }
